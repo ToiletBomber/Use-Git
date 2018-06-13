@@ -1,0 +1,74 @@
+-------------------------------------本地创建仓库推送到远程仓库--------------------------
+1.下载Git，一直next
+2.开始菜单->git->git bash
+3.执行下面两句话 --global表示这台机器的所有git仓库都使用这个配置
+  git config --global user.name "Your name"
+  git config --global user.email "example@example.com"
+4.创建版本库
+  4.1新建一个空目录
+  4.2右键 git bash here
+  4.3输入 git init 成功后该目录下生成一个隐藏文件夹.git
+5.编写一个 readme.text 里面写入样例
+6.把readme.txt放入仓库中
+  6.1 git add readme.txt 			 将文件添加到仓库
+  6.2 git commit -m “本次提交的说明” 提交到git版本库
+  得到以下结果:
+$ git commit -m "test1"
+[master (root-commit) 1b152d2] test1
+ 1 file changed, 2 insertions(+) 一个文件改动 两行插入
+ create mode 100644 readme.txt
+注：commit 一次可以提交多个文件，所以可以add多个文件一次 commit
+ git add.
+ git commit -m<message>
+ git status 查看仓库状态
+ git diff   查看修改的内容
+ git log    查看修改日志（最近到最远）
+ git log --pretty=oneline 格式化日志变成一行
+ 
+97dca167c352986f9e44e3e1b8ea581570b98122 (HEAD -> master) test3
+94ed87f795f5b29563c7219011748a05727ae5f7 test2
+1b152d268c6245c2c87c1f603edf8c3278cfb359 
+前面的数字是commit ID
+7.回退版本
+  7.1 git reset --hard HEAD^ 上上个版本是HEAD^^ 往上100个版本是HEAD~100//回退
+  cat readme.txt  cmd查看文档命令
+  在回退命令敲完后，如果没关闭bash窗口可以找到删除的comm ID 使用
+  git reset --hard 97dc													//回来
+  git reflog commitID  	关闭BASH窗口 也能记录下你使用过的命令			//回来
+  
+8.git 使用方法 修改->git add->第二次修改->git add ...git commit
+9.撤销修改
+  git checkout -- readme.txt
+  回到最近一次git commit 或者 git add 的状态
+
+  
+  
+1.远程仓库的创建
+1.先创建SSH KEY 打开bash输入 ssh-keygen -t rsa "email addr"
+生成.ssh文件夹
+2.打开github 登陆账号->点击右上角头像->setting->ssh and GPG keys->new ssh key
+3.粘贴id_rsa.pub
+4.登陆github右上角+号->new repository 创建一个新仓库
+5.输入repository name->create repository
+6.出现一个提示页面可以新建一个项目 或者推送已有的项目 或者从其他仓库导入
+7.将本地仓库与远程仓库建立连接
+7.1 git remote add origin git@github.com:tcmix/1.git
+	git push -u origin master			//第一次推送master分支的所有内容以后推送可以省略-u
+8.git 第一次连接ssh需要验证 填yes即可
+-----------------------------------------------------------------------------------
+---------------------------------------远程仓库创建clone到本地------------------------------
+1.登陆github右上角+号->new repository 创建一个新仓库
+2.输入repository name->create repository
+3.出现一个提示页面可以新建一个项目 或者推送已有的项目 或者从其他仓库导入
+4.git clone git@github.com:tcmix/2.git
+-----------------------------分支管理--------------------------------------
+1.git checkout -b dev 创建dev分支并切换到dev分支 -b表示创建并切换等价于 
+git branch dev 
+git checkout dev
+--------------------------------
+git branch 			列出当前所有分支
+git checkout master 切换分支
+git merge dev   	将dev分支合并到当前分支
+git branch -d dev   删除dev分支
+git log --graph --pretty=oneline --abbrev-commit
+分支无法合并时必须要先解决冲突在提交合并完成删除分支
