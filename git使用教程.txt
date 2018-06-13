@@ -72,3 +72,4 @@ git merge dev   	将dev分支合并到当前分支
 git branch -d dev   删除dev分支
 git log --graph --pretty=oneline --abbrev-commit
 分支无法合并时必须要先解决冲突在提交合并完成删除分支
+------------------------------------------------------------------------------
