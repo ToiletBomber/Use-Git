@@ -56,6 +56,13 @@
 2.撤销修改
   git checkout -- readme.txt
   回到最近一次git commit 或者 git add 的状态
+  
+3.git diff HEAD -- xxxx 可以查看工作区和版本库里最新版本的区别
+  git diff --cached 比较的是暂存区文件与仓库分支里的区别
+  git diff  比较工作区和暂存区的区别
+
+4.git reset HEAD xxxx 可以把暂存区的修改撤销掉，从新放回工作区
+  git reset既可以回退版本，也可以把暂存区的修改回退到工作区
 
   
   
