@@ -1,22 +1,32 @@
--------------------------------------本地创建仓库推送到远程仓库--------------------------
+一.安装git
 1.下载Git，一直next
+
 2.开始菜单->git->git bash
+
 3.执行下面两句话 --global表示这台机器的所有git仓库都使用这个配置
   git config --global user.name "Your name"
   git config --global user.email "example@example.com"
-4.创建版本库
-  4.1新建一个空目录
-  4.2右键 git bash here
-  4.3输入 git init 成功后该目录下生成一个隐藏文件夹.git
-5.编写一个 readme.text 里面写入样例
-6.把readme.txt放入仓库中
-  6.1 git add readme.txt 			 将文件添加到仓库
-  6.2 git commit -m “本次提交的说明” 提交到git版本库
+  
+  
+二.创建版本库
+1.新建一个空目录
+  
+2.右键 git bash here
+
+3.输入 git init 成功后该目录下生成一个隐藏文件夹.git
+
+4.编写一个 readme.text 里面写入样例
+
+5.把readme.txt放入仓库中
+  git add readme.txt 			 将文件添加到仓库
+  git commit -m “本次提交的说明” 提交到git版本库
+  
   得到以下结果:
-$ git commit -m "test1"
-[master (root-commit) 1b152d2] test1
- 1 file changed, 2 insertions(+) 一个文件改动 两行插入
- create mode 100644 readme.txt
+	$ git commit -m "test1"
+	[master (root-commit) 1b152d2] test1
+	 1 file changed, 2 insertions(+) 一个文件改动 两行插入
+	 create mode 100644 readme.txt
+	 
 注：commit 一次可以提交多个文件，所以可以add多个文件一次 commit
  git add.
  git commit -m<message>
@@ -29,15 +39,21 @@ $ git commit -m "test1"
 94ed87f795f5b29563c7219011748a05727ae5f7 test2
 1b152d268c6245c2c87c1f603edf8c3278cfb359 
 前面的数字是commit ID
-7.回退版本
-  7.1 git reset --hard HEAD^ 上上个版本是HEAD^^ 往上100个版本是HEAD~100//回退
-  cat readme.txt  cmd查看文档命令
-  在回退命令敲完后，如果没关闭bash窗口可以找到删除的comm ID 使用
-  git reset --hard 97dc													//回来
-  git reflog commitID  	关闭BASH窗口 也能记录下你使用过的命令			//回来
+
+
+三.回退版本
+1.git reset --hard HEAD^ 上上个版本是HEAD^^ 往上100个版本是HEAD~100//回退
+
+2.cat readme.txt  cmd查看文档命令
+3.在回退命令敲完后，如果没关闭bash窗口可以找到删除的comm ID 使用
+  git reset --hard 97dc													
+  git reflog commitID  	关闭BASH窗口 也能记录下你使用过的命令	
+ 
+四.管理修改 
+1.git 使用方法 修改->git add->第二次修改->git add ...git commit
+  git提交的是暂存区的文件（也就是add之后的）
   
-8.git 使用方法 修改->git add->第二次修改->git add ...git commit
-9.撤销修改
+2.撤销修改
   git checkout -- readme.txt
   回到最近一次git commit 或者 git add 的状态
 
