@@ -1,0 +1,211 @@
+git学习笔记
+
+一.安装git
+1.下载Git，一直next
+
+2.开始菜单->git->git bash
+
+3.执行下面两句话 --global表示这台机器的所有git仓库都使用这个配置
+  git config --global user.name "Your name"
+  git config --global user.email "example@example.com"
+
+4.查看系统config
+  git config --system --list
+  查看当前用户（global）配置
+  git config --global? --list
+  查看当前仓库配置信息
+  git config --local??--list
+  删除配置项
+  git config  --global --unset configName
+
+  
+二.创建版本库
+1.新建一个空目录
+  
+2.右键 git bash here
+
+3.输入 git init 成功后该目录下生成一个隐藏文件夹.git
+
+4.编写一个 readme.text 里面写入样例
+
+5.把readme.txt放入仓库中
+  git add readme.txt 			 将文件添加到仓库
+  git commit -m “本次提交的说明” 提交到git版本库
+  
+  得到以下结果:
+	$ git commit -m "test1"
+	[master (root-commit) 1b152d2] test1
+	 1 file changed, 2 insertions(+) 一个文件改动 两行插入
+	 create mode 100644 readme.txt
+	 
+注：commit 一次可以提交多个文件，所以可以add多个文件一次 commit
+ git add.
+ git commit -m<message>
+ git status 查看仓库状态
+ git diff   查看修改的内容
+ git log    查看修改日志（最近到最远）
+ git log --pretty=oneline 格式化日志变成一行
+ 
+97dca167c352986f9e44e3e1b8ea581570b98122 (HEAD -> master) test3
+94ed87f795f5b29563c7219011748a05727ae5f7 test2
+1b152d268c6245c2c87c1f603edf8c3278cfb359 
+前面的数字是commit ID
+
+
+三.回退版本
+1.git reset --hard HEAD^ 上上个版本是HEAD^^ 往上100个版本是HEAD~100//回退
+
+2.cat readme.txt  cmd查看文档命令
+3.在回退命令敲完后，如果没关闭bash窗口可以找到删除的comm ID 使用
+  git reset --hard 97dc													
+  git reflog commitID  	关闭BASH窗口 也能记录下你使用过的命令	
+ 
+四.管理修改 
+1.git 使用方法 修改->git add->第二次修改->git add ...git commit
+  git提交的是暂存区的文件（也就是add之后的）
+  
+2.撤销修改
+  git checkout -- readme.txt
+  回到最近一次git commit 或者 git add 的状态
+  
+3.git diff HEAD -- xxxx 可以查看工作区和版本库里最新版本的区别
+  git diff --cached 比较的是暂存区文件与仓库分支里的区别
+  git diff  比较工作区和暂存区的区别
+
+4.git reset HEAD xxxx 可以把暂存区的修改撤销掉，从新放回工作区
+  git reset既可以回退版本，也可以把暂存区的修改回退到工作区
+
+5.场景1：当你改乱了工作区的某个文件内容，丢弃操作 git checkout -- xxxx
+  场景2：当你改乱了工作区的某个文件内容，还添加到暂存区，丢弃操作，
+  先用 git reset HEAD xxxx 回到场景1 然后在用场景1操作
+  场景3：如果已经提交到版本库，想撤销，需要版本回退 git reset --hard xxxx
+
+6.删除文件
+1.git rm xxxx或者 rm xxxx  git commit   
+  
+五.本地库关联远程库
+1.先创建SSH KEY 打开bash输入 ssh-keygen -t rsa -C "email addr"
+ 生成.ssh文件夹
+ 
+2.打开github 登陆账号->点击右上角头像
+->setting->ssh and GPG keys->new ssh key
+
+3.粘贴id_rsa.pub
+
+4.登陆github右上角+号->new repository 创建一个新仓库
+
+5.输入repository name->create repository
+
+6.出现一个提示页面可以新建一个项目 或者推送已有的项目 或者从其他仓库导入
+
+7.将本地仓库与远程仓库建立连接
+git remote add origin git@github.com:tcmix/1.git//一定要cd到该仓库目录下才能输入该命令
+git push -u origin master//第一次推送master分支的所有内容以后推送可以省略-u
+
+8.git 第一次连接ssh需要验证 填yes即可
+
+注：因为安装了cadence环境变量修改了，所以git识别不了ssh路径，修改环境变量home值，改为C:\Users\Administrator
+	这样就能推送到仓库了
+
+六.远程库克隆
+1.登陆github右上角+号->new repository 创建一个新仓库
+
+2.输入repository name->create repository
+
+3.出现一个提示页面可以新建一个项目 或者推送已有的项目 或者从其他仓库导入
+
+4.git clone git@github.com:tcmix/2.git
+
+
+七.分支管理
+1.git checkout -b dev 创建dev分支并切换到dev分支 -b表示创建并切换等价于 
+git branch dev 
+git checkout dev
+
+2.git branch 			列出当前所有分支
+
+3.git checkout master 切换分支
+
+4.git merge dev   	将dev分支合并到当前分支（快速合并）
+
+5.git branch -d dev   删除dev分支
+
+6.git log --graph --pretty=oneline --abbrev-commit
+分支无法合并时必须要先解决冲突在提交合并完成删除分支
+
+7.git merge --no-ff feature1 
+合并分支禁用快速合并功能，这样分支也会提交一次，便于查找问题
+git merge --no-ff -m "注释" dev
+
+七.BUG分支
+1.git stash 可以把当前工作存储起来，事后恢复现场
+
+2.git stash apply 恢复stash现场
+  git stash drop 删除stash
+  git stash pop  恢复现场并删除stash
+  
+3.git stash list 查看stash编号
+
+4.git stash apply stash@{0} 恢复stash编号的现场
+
+
+八.强制删除分支
+1.git branch -D dev
+
+
+九.推送其他分支
+1.git push origin dev
+
+
+十.多人协作
+1.别人在dev分支开发时，必须创建远程origin的dev分支到本地
+git checkout -b dev origin/dev
+之后他就可以在这个分支上修改提交push
+
+2.当另一个人也修改了相同的文件是，他会推送失败，因为你们两个推送有冲突
+git pull下来本地合并，解决冲突在提交
+注：你需要指定本地dev分支与远程origin/dev分支建立联系
+git branch --set-upstream-to=origin/dev dev
+然后pull本地合并，解决冲突在push
+
+十一.rebase
+1.把提交历史变成一条直线
+git rebase
+
+
+十二.标签
+1.git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+
+2.git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+
+3.git tag可以查看所有标签。
+
+4.git show v.xx 可以查看该标签的详细信息
+
+
+十三.操作标签
+1.git tag -d v0.1 删除标签
+
+2.git push origin v0.1 推送标签到远程
+
+3.git push origin --tags 推送所有标签
+
+4.如果标签已经推送到远程，先删除本地标签操作1
+然后在删除远程的
+git push origin :refs/tags/v0.1
+
+
+十四.忽略管理文件
+1.添加.gitignore 文件
+
+2..gitignore写得有问题，需要找出来到底哪个规则写错了，
+可以用git check-ignore命令检查：
+git check-ignore -v App.class
+.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+
+十五.配置别名
+主要为了写指令少打点 或者是自己习惯
+git config --global alias st status
+把status改成st
+git st == git status
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
