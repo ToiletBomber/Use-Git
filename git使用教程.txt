@@ -119,9 +119,11 @@ git push -u origin master//第一次推送master分支的所有内容以后推送可以省略-u
 1.git checkout -b dev 创建dev分支并切换到dev分支 -b表示创建并切换等价于 
 git branch dev 
 git checkout dev
-----------------------------------------------------------------------
-git branch 			列出当前所有分支
-git checkout master 切换分支
+
+2.git branch 			列出当前所有分支
+
+3.git checkout master 切换分支
+
 git merge dev   	将dev分支合并到当前分支
 git branch -d dev   删除dev分支
 git log --graph --pretty=oneline --abbrev-commit
