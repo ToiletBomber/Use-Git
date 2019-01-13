@@ -128,11 +128,7 @@ git checkout dev
 
 5.git branch -d dev   删除dev分支
 
-新分支测试
-<<<<<<< HEAD
-=======
->>>>>>> feature1
-git log --graph --pretty=oneline --abbrev-commit
+6.git log --graph --pretty=oneline --abbrev-commit
 分支无法合并时必须要先解决冲突在提交合并完成删除分支
 
 ------------------------------------------------------------------------------
