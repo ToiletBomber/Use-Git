@@ -156,3 +156,15 @@ git merge --no-ff -m "注释" dev
 九.推送其他分支
 1.git push origin dev
 
+
+十.多人协作
+1.别人在dev分支开发时，必须创建远程origin的dev分支到本地
+git checkout -b dev origin/dev
+之后他就可以在这个分支上修改提交push
+
+2.当另一个人也修改了相同的文件是，他会推送失败，因为你们两个推送有冲突
+git pull下来本地合并，解决冲突在提交
+注：你需要指定本地dev分支与远程origin/dev分支建立联系
+git branch --set-upstream-to=origin/dev dev
+然后pull本地合并，解决冲突在push
+
