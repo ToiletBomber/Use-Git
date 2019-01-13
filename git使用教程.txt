@@ -99,8 +99,11 @@
 7.将本地仓库与远程仓库建立连接
 git remote add origin git@github.com:tcmix/1.git//一定要cd到该仓库目录下才能输入该命令
 git push -u origin master//第一次推送master分支的所有内容以后推送可以省略-u
+
 8.git 第一次连接ssh需要验证 填yes即可
 
+注：因为安装了cadence环境变量修改了，所以git识别不了ssh路径，修改环境变量home值，改为C:\Users\Administrator
+	这样就能推送到仓库了
 
 六.远程库克隆
 1.登陆github右上角+号->new repository 创建一个新仓库
