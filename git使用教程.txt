@@ -134,4 +134,10 @@ git checkout dev
 7.git merge --no-ff feature1 
 合并分支禁用快速合并功能，这样分支也会提交一次，便于查找问题
 git merge --no-ff -m "注释" dev
+<<<<<<< Updated upstream
 -------
+=======
+
+七.BUG分支
+issue101
+>>>>>>> Stashed changes
