@@ -168,3 +168,7 @@ git pull下来本地合并，解决冲突在提交
 git branch --set-upstream-to=origin/dev dev
 然后pull本地合并，解决冲突在push
 
+十一.rebase
+1.把提交历史变成一条直线
+git rebase
+
