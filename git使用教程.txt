@@ -172,3 +172,24 @@ git branch --set-upstream-to=origin/dev dev
 1.把提交历史变成一条直线
 git rebase
 
+
+十二.标签
+1.git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+
+2.git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+
+3.git tag可以查看所有标签。
+
+4.git show v.xx 可以查看该标签的详细信息
+
+
+十三.操作标签
+1.git tag -d v0.1 删除标签
+
+2.git push origin v0.1 推送标签到远程
+
+3.git push origin --tags 推送所有标签
+
+4.如果标签已经推送到远程，先删除本地标签操作1
+然后在删除远程的
+git push origin :refs/tags/v0.1
