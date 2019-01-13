@@ -152,3 +152,5 @@ git merge --no-ff -m "注释" dev
 八.强制删除分支
 1.git branch -D dev
 
+你是个睿智！
+
