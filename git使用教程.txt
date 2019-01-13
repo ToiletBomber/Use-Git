@@ -1,3 +1,5 @@
+git学习笔记
+
 一.安装git
 1.下载Git，一直next
 
@@ -138,4 +140,15 @@ git merge --no-ff -m "注释" dev
 七.BUG分支
 1.git stash 可以把当前工作存储起来，事后恢复现场
 
-2.
+2.git stash apply 恢复stash现场
+  git stash drop 删除stash
+  git stash pop  恢复现场并删除stash
+  
+3.git stash list 查看stash编号
+
+4.git stash apply stash@{0} 恢复stash编号的现场
+
+
+八.强制删除分支
+1.git branch -D dev
+
